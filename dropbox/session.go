@@ -189,8 +189,8 @@ func (s *Session) GetAccessToken() error {
 	if s.RequestToken == nil {
 		return errors.New("no request token")
 	}
-
-	if cred, _, err := s.OauthClient.RequestToken(s.client(), s.RequestToken.oauth(), ""); err != nil {
+	cred, _, err := s.OauthClient.RequestToken(s.client(), s.RequestToken.oauth(), "")
+	if err != nil {
 		return err
 	}
 	s.AccessToken = fromOauth(cred)

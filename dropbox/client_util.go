@@ -24,8 +24,8 @@ func (t *Time) UnmarshalJSON(data []byte) error {
 	if err := json.Unmarshal(data, &str); err != nil {
 		return err
 	}
-
-	if t2, err := time.Parse(time.RFC1123Z, str); err != nil {
+	t2, err := time.Parse(time.RFC1123Z, str)
+	if err != nil {
 		return err
 	}
 	t.Time = t2
